@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace API_excercise
 {
-    interface IProductStore
+    public interface IProductStore
     {
-        void Add(string product);
+        void Add(Product product);
 
-        List<string> GetList();
+        IReadOnlyList<Product> GetList();
 
     }
 }

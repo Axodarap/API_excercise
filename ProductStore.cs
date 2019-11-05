@@ -7,19 +7,19 @@ namespace API_excercise
 {
     public class ProductStore : IProductStore
     {
-        private List<string> _products;
+        private readonly List<Product> _products;
 
         public ProductStore()
         {
-            _products = new List<string>();
+            _products = new List<Product>();
         }
 
-        public void Add(string product)
+        public void Add(Product product)
         {
             _products.Add(product);
         }
 
-        public List<string> GetList()
+        public IReadOnlyList<Product> GetList()
         {
             return _products;
         }
