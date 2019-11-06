@@ -9,7 +9,7 @@ namespace API_excercise
     {
         void Add(Product product);
 
-        IReadOnlyList<Product> GetList();
+        IReadOnlyList<Product> GetProducts();
 
     }
 }

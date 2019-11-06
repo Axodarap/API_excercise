@@ -31,7 +31,13 @@ namespace API_excercise.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return new JsonResult(_store.GetList().ToArray());
+            return new JsonResult(_store.GetProducts().ToArray());
+        }
+
+        [HttpGet("{category}")]
+        public IActionResult Get(string category)
+        {
+            return new JsonResult(_store.GetProducts().Where(p => p.category == category).ToList());
         }
     }
 }

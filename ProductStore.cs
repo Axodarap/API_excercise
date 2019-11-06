@@ -19,7 +19,7 @@ namespace API_excercise
             _products.Add(product);
         }
 
-        public IReadOnlyList<Product> GetList()
+        public IReadOnlyList<Product> GetProducts()
         {
             return _products;
         }
