@@ -7,8 +7,10 @@ namespace API_excercise
 {
     public class Product
     {
-        public string articleNumber { get; set; }
-        public float price { get; set; }
+
+        public string articleNumber { get; set;}
+        public double price { get; set; }
         public string category { get; set; }
+        public DateTime date { get; set; }
     }
 }

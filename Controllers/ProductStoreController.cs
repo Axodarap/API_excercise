@@ -34,10 +34,18 @@ namespace API_excercise.Controllers
             return new JsonResult(_store.GetProducts().ToArray());
         }
 
-        [HttpGet("{category}")]
+        [HttpGet("/productstore/{category}")]
         public IActionResult Get(string category)
         {
             return new JsonResult(_store.GetProducts().Where(p => p.category == category).ToList());
         }
+
+        [HttpGet("/productstore/money")]
+        public double GetMoney()
+        {
+            return 10.23;
+        }
+
+
     }
 }
