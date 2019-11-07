@@ -34,18 +34,35 @@ namespace API_excercise.Controllers
             return new JsonResult(_store.GetProducts().ToArray());
         }
 
-        [HttpGet("/productstore/{category}")]
+
+        //total revenue for a specific day
+        [HttpGet("/productstore/revenue")]
+        public double GetRevenue(DateTime date)
+        {
+            double revenue = 0;
+            foreach (var p in _store.GetProducts())
+            {
+                if (p.date.Date == date.Date)
+                {
+                    revenue = revenue + p.price;
+                }
+            }            
+            return revenue;
+        }
+
+        //revenue grouped by article
+        [HttpGet("/productstore/statistics")]
         public IActionResult Get(string category)
-        {
-            return new JsonResult(_store.GetProducts().Where(p => p.category == category).ToList());
+        {   
+            //should return a list with all products and their total revenue
+            return new JsonResult("result");
         }
 
-        [HttpGet("/productstore/money")]
-        public double GetMoney()
+        //returns total #products for a specific day
+        [HttpGet("/productstore/numproducts")]
+        public int GetNumProducts(DateTime date)
         {
-            return 10.23;
+            return _store.GetProducts().Where(p => p.date.Date == date.Date).Count();
         }
-
-
     }
 }
