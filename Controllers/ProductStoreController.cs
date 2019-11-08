@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NSwag.Annotations;
 
 namespace API_excercise.Controllers
 {
@@ -21,13 +22,18 @@ namespace API_excercise.Controllers
             _store = store;
         }
 
+        /// <summary>
+        /// Insert a new product into the storage.
         [HttpPost]
         public void Post(Product newProduct)
         {
             _store.Add(newProduct);
         }
 
-        //returns all the date of all the products stored in the list 
+        /// <summary>
+        /// Returns all products sold
+        /// </summary>   
+        /// <returns>List of all sold articles</returns> 
         [HttpGet]
         public IActionResult Get()
         {
@@ -35,7 +41,11 @@ namespace API_excercise.Controllers
         }
 
 
-        //total revenue for a specific day
+        /// <summary>
+        /// Retrieve total revenue for a specific day
+        /// </summary>
+        /// <param name="date">The date of the desired revenue per day</param>
+        /// <returns>Revenue per day</returns>
         [HttpGet("/productstore/revenue")]
         public double GetRevenue(DateTime date)
         {
@@ -50,15 +60,34 @@ namespace API_excercise.Controllers
             return revenue;
         }
 
-        //revenue grouped by article
+        /// <summary>
+        /// Retrieve total revenue for all products in the same category
+        /// </summary>
+        /// <returns>Revenue statistics grouped by category</returns>
         [HttpGet("/productstore/statistics")]
-        public IActionResult Get(string category)
-        {   
-            //should return a list with all products and their total revenue
-            return new JsonResult("result");
+        public IActionResult GetStatistics()
+        {
+            Dictionary<string, double> statistics = new Dictionary<string, double>();
+
+            foreach(var p in _store.GetProducts())
+            {
+                if(statistics.ContainsKey(p.category))
+                {
+                    statistics[p.category] += p.price;
+                }
+                else  //if product is not in the dictionary yet
+                {
+                    statistics.Add(p.category, p.price);
+                }
+            }
+            return new JsonResult(statistics);
         }
 
-        //returns total #products for a specific day
+        /// <summary>
+        /// Retrieve number of sold producst per day
+        /// </summary>
+        /// <param name="date">The date of the desired number of sold products per day</param>
+        /// <returns>Number of sold products per day</returns>
         [HttpGet("/productstore/numproducts")]
         public int GetNumProducts(DateTime date)
         {

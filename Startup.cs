@@ -10,7 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-
+using NSwag;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace API_excercise
 {
@@ -30,7 +31,10 @@ namespace API_excercise
 
             services.AddControllers();
 
-            services.AddOpenApiDocument();
+            services.AddOpenApiDocument(options => options.Title = "Excercise API");
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,7 +49,7 @@ namespace API_excercise
 
             app.UseOpenApi();
             app.UseSwaggerUi3();
-
+           
             app.UseRouting();
 
             app.UseAuthorization();

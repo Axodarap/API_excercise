@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API_excercise</name>
+    </assembly>
+    <members>
+        <member name="M:API_excercise.Controllers.ProductStoreController.Post(API_excercise.Product)">
+            <summary>
+            Insert a new product into the storage.
+            </summary>
+            <param articleNumber="32 character alphanumeric value">The date of the desired revenue per day</param>
+            <param price="price in €">The date of the desired revenue per day</param>
+            <param category="category of the product">The date of the desired revenue per day</param>
+            <param name="date of saleofsale">The date of the desired revenue per day</param>
+        </member>
+        <member name="M:API_excercise.Controllers.ProductStoreController.Get">
+            <summary>
+            Returns all products sold
+            </summary>   
+            <returns>List of all sold articles</returns> 
+        </member>
+        <member name="M:API_excercise.Controllers.ProductStoreController.GetRevenue(System.DateTime)">
+            <summary>
+            Retrieve total revenue for a specific day
+            </summary>
+            <param name="date">The date of the desired revenue per day</param>
+            <returns>Revenue per day</returns>
+        </member>
+        <member name="M:API_excercise.Controllers.ProductStoreController.GetStatistics">
+            <summary>
+            Retrieve total revenue for all products in the same category
+            </summary>
+            <returns>Revenue statistics grouped by category</returns>
+        </member>
+        <member name="M:API_excercise.Controllers.ProductStoreController.GetNumProducts(System.DateTime)">
+            <summary>
+            Retrieve number of sold producst per day
+            </summary>
+            <param name="date">The date of the desired number of sold products per day</param>
+            <returns>Number of sold products per day</returns>
+        </member>
+    </members>
+</doc>
